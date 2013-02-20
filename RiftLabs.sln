@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KickMasterUISim", "KickMasterUISim\KickMasterUISim.csproj", "{888C0AD7-4A02-487C-ABF0-64C80868191A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kick.Communication", "Kick.Communication\Kick.Communication.csproj", "{A0AED373-D8EB-4690-AA76-59314F91BE5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kick.Utils", "Kick.Utils\Kick.Utils.csproj", "{44DD74B0-3AFC-4794-A436-BC3D9C64FADF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{888C0AD7-4A02-487C-ABF0-64C80868191A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888C0AD7-4A02-487C-ABF0-64C80868191A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888C0AD7-4A02-487C-ABF0-64C80868191A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888C0AD7-4A02-487C-ABF0-64C80868191A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0AED373-D8EB-4690-AA76-59314F91BE5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0AED373-D8EB-4690-AA76-59314F91BE5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0AED373-D8EB-4690-AA76-59314F91BE5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0AED373-D8EB-4690-AA76-59314F91BE5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44DD74B0-3AFC-4794-A436-BC3D9C64FADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44DD74B0-3AFC-4794-A436-BC3D9C64FADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44DD74B0-3AFC-4794-A436-BC3D9C64FADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44DD74B0-3AFC-4794-A436-BC3D9C64FADF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
