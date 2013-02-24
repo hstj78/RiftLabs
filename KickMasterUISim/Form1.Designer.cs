@@ -58,6 +58,7 @@
       this.responseDelay = new System.Windows.Forms.NumericUpDown();
       this.label5 = new System.Windows.Forms.Label();
       this.cboDevices = new System.Windows.Forms.ComboBox();
+      this.btnSummary = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.EV2Slider)).BeginInit();
       this.grpKickInfo.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.responseDelay)).BeginInit();
@@ -113,7 +114,7 @@
       // 
       // btnVersion
       // 
-      this.btnVersion.Location = new System.Drawing.Point(12, 70);
+      this.btnVersion.Location = new System.Drawing.Point(12, 99);
       this.btnVersion.Name = "btnVersion";
       this.btnVersion.Size = new System.Drawing.Size(83, 23);
       this.btnVersion.TabIndex = 3;
@@ -165,7 +166,7 @@
       // 
       // btnStatus
       // 
-      this.btnStatus.Location = new System.Drawing.Point(12, 99);
+      this.btnStatus.Location = new System.Drawing.Point(12, 128);
       this.btnStatus.Name = "btnStatus";
       this.btnStatus.Size = new System.Drawing.Size(83, 23);
       this.btnStatus.TabIndex = 4;
@@ -175,7 +176,7 @@
       // 
       // btnEV2
       // 
-      this.btnEV2.Location = new System.Drawing.Point(12, 128);
+      this.btnEV2.Location = new System.Drawing.Point(12, 157);
       this.btnEV2.Name = "btnEV2";
       this.btnEV2.Size = new System.Drawing.Size(83, 23);
       this.btnEV2.TabIndex = 5;
@@ -185,7 +186,7 @@
       // 
       // EV2Slider
       // 
-      this.EV2Slider.Location = new System.Drawing.Point(12, 157);
+      this.EV2Slider.Location = new System.Drawing.Point(12, 186);
       this.EV2Slider.Maximum = 255;
       this.EV2Slider.Name = "EV2Slider";
       this.EV2Slider.Size = new System.Drawing.Size(83, 45);
@@ -195,7 +196,7 @@
       // 
       // btnRGB
       // 
-      this.btnRGB.Location = new System.Drawing.Point(12, 208);
+      this.btnRGB.Location = new System.Drawing.Point(12, 237);
       this.btnRGB.Name = "btnRGB";
       this.btnRGB.Size = new System.Drawing.Size(83, 23);
       this.btnRGB.TabIndex = 7;
@@ -207,7 +208,7 @@
       // 
       this.pnlRGB.BackColor = System.Drawing.Color.White;
       this.pnlRGB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-      this.pnlRGB.Location = new System.Drawing.Point(12, 237);
+      this.pnlRGB.Location = new System.Drawing.Point(12, 266);
       this.pnlRGB.Name = "pnlRGB";
       this.pnlRGB.Size = new System.Drawing.Size(83, 45);
       this.pnlRGB.TabIndex = 8;
@@ -377,11 +378,22 @@
       this.cboDevices.TabIndex = 19;
       this.cboDevices.SelectedValueChanged += new System.EventHandler(this.cboDevices_SelectedValueChanged);
       // 
+      // btnSummary
+      // 
+      this.btnSummary.Location = new System.Drawing.Point(12, 70);
+      this.btnSummary.Name = "btnSummary";
+      this.btnSummary.Size = new System.Drawing.Size(83, 23);
+      this.btnSummary.TabIndex = 20;
+      this.btnSummary.Text = "Summary";
+      this.btnSummary.UseVisualStyleBackColor = true;
+      this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(796, 505);
+      this.Controls.Add(this.btnSummary);
       this.Controls.Add(this.cboDevices);
       this.Controls.Add(this.label5);
       this.Controls.Add(this.responseDelay);
@@ -446,6 +458,7 @@
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.ComboBox cboDevices;
     private System.Windows.Forms.Label lblTemperature;
+    private System.Windows.Forms.Button btnSummary;
   }
 }
 

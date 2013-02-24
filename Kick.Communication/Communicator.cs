@@ -36,11 +36,12 @@ namespace RiftLabs.Kick.Communication
       TransmitInterval = 5;
     }
 
-    public IEnumerable<KickDeviceInfo> KickDevices
+    public KickDeviceInfo[] KickDevices
     {
       get
       {
-        return m_Devices.ToArray();
+        lock (m_Devices)
+					return m_Devices.ToArray();
       }
     }
 
@@ -197,19 +198,21 @@ namespace RiftLabs.Kick.Communication
           if (marker != "R$")
             continue;
 
-          KickDeviceInfo device;
+          var newDevice = false;
+					KickDeviceInfo device;
           lock (m_Devices)
           {
             if (!m_Devices.Any(d => d.Address.SequenceEqual(kickAddress)))
             {
-              m_Devices.Add(new KickDeviceInfo { Address = kickAddress });
-              
-              if (OnNewKickDevice != null)
-                OnNewKickDevice(m_Devices.Last());
+              newDevice = true;
+							m_Devices.Add(new KickDeviceInfo { Address = kickAddress });              
             }
 
             device = m_Devices.Single(d => d.Address.SequenceEqual(kickAddress));
           }
+
+					if (newDevice && OnNewKickDevice != null)
+						OnNewKickDevice(device);
 
           var request = new UdpPacket(data.Skip(1).Take(3).ToArray(), data.Skip(7).Take(1).ElementAt(0), data.Length > 8 ? data.Skip(8).ToArray() : null);
           ProcessUdpPacket(device, request);
@@ -282,13 +285,13 @@ namespace RiftLabs.Kick.Communication
           device.Power = request.Data[1];
           if (OnKickDeviceChanged != null) OnKickDeviceChanged(device);
           break;
-        case 0x87:          
+        case 0x87:
           device.FirmwareVersion = new Version(request.Data[0], request.Data[1]);
           device.HardwareVersion = new Version(request.Data[2], request.Data[3]);
-          device.SerialNumber = Communicator.ToHexString(request.Data.Skip(4).Take(4))
-            + "-" + Communicator.ToHexString(request.Data.Skip(8).Take(4))
-            + "-" + Communicator.ToHexString(request.Data.Skip(12).Take(4))
-            + "-" + Communicator.ToHexString(request.Data.Skip(16).Take(4));
+          device.SerialNumber = request.Data.Skip(4).Take(4).ToHexString()
+            + "-" + request.Data.Skip(8).Take(4).ToHexString()
+            + "-" + request.Data.Skip(12).Take(4).ToHexString()
+            + "-" + request.Data.Skip(16).Take(4).ToHexString();
           if (OnKickDeviceChanged != null) OnKickDeviceChanged(device);
           break;
         case 0x89:
@@ -297,6 +300,14 @@ namespace RiftLabs.Kick.Communication
           break;
         case 0x90:
           device.Power = request.Data[0];
+          if (OnKickDeviceChanged != null) OnKickDeviceChanged(device);
+          break;
+        case 0x91:
+          device.EV = request.Data[0];
+          device.Color = new RGBColor(request.Data[9], request.Data[10], request.Data[11]);
+          device.FirmwareVersion = new Version(request.Data[12], request.Data[13]);
+          device.HardwareVersion = new Version(request.Data[14], request.Data[15]);
+          device.Name = Encoding.ASCII.GetString(request.Data.Skip(16).TakeWhile(b => b > 0x0).ToArray());
           if (OnKickDeviceChanged != null) OnKickDeviceChanged(device);
           break;
         default:
@@ -308,26 +319,6 @@ namespace RiftLabs.Kick.Communication
     {
       if (OnDebugMessage != null)
         OnDebugMessage(text);
-    }
-
-    public static string ToHexString(IEnumerable<byte> data)
-    {
-      var dataText = "";
-      var count = data.Count();
-
-      for (int i = 0; i < count; i++)
-        dataText += data.ElementAt(i).ToString("X2");
-
-      return dataText;
-    }
-
-    public static byte[] FromHexString(string data)
-    {
-      var result = new byte[data.Length / 2];
-      for (int i = 0; i < data.Length / 2; i++)
-        result[i] = byte.Parse(data.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
-
-      return result;
     }
 
     public void RegisterUdpPacketToSend(UdpPacket packet)

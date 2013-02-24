@@ -1,4 +1,5 @@
 using System;
+using RiftLabs.Kick.Utils;
 
 namespace RiftLabs.Kick.Communication
 {
@@ -14,7 +15,7 @@ namespace RiftLabs.Kick.Communication
 
 		public bool IsCharging { get { return Power == byte.MaxValue; } }
 
-		public int? EV { get; set; }
+		public byte? EV { get; set; }
 
 		public Version FirmwareVersion { get; set; }
 
@@ -26,7 +27,7 @@ namespace RiftLabs.Kick.Communication
 
     public override string ToString()
     {
-      return (string.IsNullOrEmpty(Name) ? "N/A" : Name) + " (Address: " + Communicator.ToHexString(Address) + ")";
+      return (string.IsNullOrEmpty(Name) ? "N/A" : Name) + " (Address: " + Address.ToHexString() + ")";
     }
 	}
 }

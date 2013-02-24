@@ -199,5 +199,10 @@ namespace RiftLabs.Kick.UI
     {
       UpdateUI();
     }
+
+    private void btnSummary_Click(object sender, EventArgs e)
+    {
+      m_Controller.RegisterUdpPacketToSend(new UdpPacket(ActiveDevice.Address, 0x91, null));
+    }
   }
 }
