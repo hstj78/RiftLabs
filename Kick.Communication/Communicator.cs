@@ -58,7 +58,7 @@ namespace RiftLabs.Kick.Communication
         if (m_UdpClient == null)
         {
           m_DisconnectCommandSentEvent.Reset();
-          m_Broadcast = IPAddress.Parse("169.254.255.255");
+          m_Broadcast = IPAddress.Parse("255.255.255.255");
           DebugWriteLine("Opening connection...");
           m_Devices = new List<KickDeviceInfo>();
           m_UdpClient = new UdpClient();
